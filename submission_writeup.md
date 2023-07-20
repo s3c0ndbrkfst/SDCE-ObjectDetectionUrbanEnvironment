@@ -4,9 +4,16 @@
 This project uses data from the [Waymo Open dataset](https://waymo.com/open/) to train an object detection model and explore different training methods that are available to create an effective model. MORE
 
 ### Set up
-The [README](./README.md) contains detailed steps to set up and train a model. Below is a brief summary of the process.
+The [README](/README.md) contains detailed steps to set up and train a model. Below is a brief summary of the process.
 
-1. 
+1. Create a local setup or in my case, use the Udacity provided workspace.
+2. Download and the Waymo data.
+3. Split the data appropriately into training, validation, and testing sets.
+4. Perform exploratory data anlysis.
+5. Train and evaluate the initial model.
+6. Explore various types of data augmentations.
+7. Run experiments to improve on the initial model performance.
+8. Save models for each experiment and create inference videos to better understand the models performance.
 
 ### Dataset
 #### Dataset analysis
@@ -14,27 +21,43 @@ Exploratory data analysis is a very important process and should be the first st
 
 | EDA Output      |               |
 | :-------------: | :-----------: |
-| ![png](ExploratoryDataAnalysis_output/output_6_0.png)          |     ![png](ExploratoryDataAnalysis_output/output_6_1.png)     |
-| ![png](ExploratoryDataAnalysis_output/output_6_2.png)          |     ![png](ExploratoryDataAnalysis_output/output_6_3.png)     |
-| ![png](ExploratoryDataAnalysis_output/output_6_4.png)          |     ![png](ExploratoryDataAnalysis_output/output_6_5.png)     |
-| ![png](ExploratoryDataAnalysis_output/output_6_6.png)          |     ![png](ExploratoryDataAnalysis_output/output_6_7.png)     |
-| ![png](ExploratoryDataAnalysis_output/output_6_8.png)          |     ![png](ExploratoryDataAnalysis_output/output_6_9.png)     |
+| ![png](/ExploratoryDataAnalysis_output/output_6_0.png)          |     ![png](/ExploratoryDataAnalysis_output/output_6_1.png)     |
+| ![png](/ExploratoryDataAnalysis_output/output_6_2.png)          |     ![png](/ExploratoryDataAnalysis_output/output_6_3.png)     |
+| ![png](/ExploratoryDataAnalysis_output/output_6_4.png)          |     ![png](/ExploratoryDataAnalysis_output/output_6_5.png)     |
+| ![png](/ExploratoryDataAnalysis_output/output_6_6.png)          |     ![png](/ExploratoryDataAnalysis_output/output_6_7.png)     |
+| ![png](/ExploratoryDataAnalysis_output/output_6_8.png)          |     ![png](/ExploratoryDataAnalysis_output/output_6_9.png)     |
 
 Additional data analysis was performed to better understand the distribution of classes throughout the images of the dataset. For a 1000 image batch of the dataset, the distribution by class follows the below chart. In this 1000 image set, the counts for each class are 17723 vehicles, 5191 pedestrians, 143 cyclists. Understanding the distribution can allow for more precise tuning of the model. For example, if there are few cyclists compared to pedestrians, it would be important to choose tuning parameters and other model factors that are able to train the model appropriately given the small number of relative instances of the cyclist class in the dataset. 
 
 
-![png](ExploratoryDataAnalysis_output/output_9_0.png)
+![png](/ExploratoryDataAnalysis_output/output_9_0.png)
 
 
 #### Cross validation
-The data supplied in the project workspace is already split appropriately following a ADD split. MORE
+The data supplied in the project workspace is already split appropriately with 86 files for training (~90%), 10 files for validation (10%), and 3 files for testing. This split of the data follows standard practices of 80-90% for training and 10-20% for validation. MORE
 
 ### Training
 #### Reference experiment
-This section should detail the results of the reference experiment. It should includes training metrics and a detailed explanation of the algorithm's performances.
+The reference experiment ran 2500 steps, included minimal data augmentations and used the momentum optimizer with a cosine decay learning rate of 0.04.
+
+The reference experiment had poor performance with the following [losses](/experiments/experiment0_reference/results/train.txt) summarized below.
+
+| Step   | Loss   |
+| :----: | :----: |
+| 100    | 15.317 |
+| 500    | 11.792 |
+| 1000   | 10.362 |
+| 1500   | 10.067 |
+| 2000   | 9.199  |
+| 2500   | 9.298  |
+
+<img src="./experiments/experiment0_reference/results/train_graph.png"  width="60%" height="30%">
+<img src="./experiments/experiment0_reference/results/stacked_graph.png"  width="60%" height="30%">
+
+The reference experiment was unable to properly detect objects in the generated inference video.
 
 #### Improve on the reference
-The initial training did not perform well so several experiments were performed to improve on this including adding data augmentations and updating the optimizer. The following table outlines the three experiments and a summary of the changes tested.
+Due to the poor performance of the initial training several experiments were performed to improve on this including adding data augmentations and updating the optimizer. The following table outlines the three experiments and a summary of the changes tested.
 
 | Experiment           | Tested Changes |
 | :------------------: | :-----------: |
@@ -43,6 +66,7 @@ The initial training did not perform well so several experiments were performed 
 | 3 - Optimizer        | Changed optimzer to Adam and implemented manual step learning rate |
 
 ##### Experiment 1
+Experiment 1 added 
 
 ##### Experiment 2
 
