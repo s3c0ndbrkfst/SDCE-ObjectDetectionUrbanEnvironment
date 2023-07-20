@@ -1,10 +1,12 @@
 ## Project Submission Writeup
 
 ### Project overview
-This section should contain a brief description of the project and what we are trying to achieve. Why is object detection such an important component of self driving car systems?
+This project uses data from the [Waymo Open dataset](https://waymo.com/open/) to train an object detection model and explore different training methods that are available to create an effective model. MORE
 
 ### Set up
-This section should contain a brief description of the steps to follow to run the code for this repository.
+The [README](./README.md) contains detailed steps to set up and train a model. Below is a brief summary of the process.
+
+1. 
 
 ### Dataset
 #### Dataset analysis
