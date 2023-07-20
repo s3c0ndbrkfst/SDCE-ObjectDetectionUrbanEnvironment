@@ -65,9 +65,46 @@ Due to the poor performance of the initial training several experiments were per
 | 2 - Learning Rate    | Updated learning rate of base model |
 | 3 - Optimizer        | Changed optimzer to Adam and implemented manual step learning rate |
 
+The provided Explore Augmentations notebook made it easy to visualize the effects of different data augmentation methods. The outputs of my exploration can be found [here](/ExploreAugmentations_output/). I chose to use augmentations that would best simulate real variations that could be found in the available dataset images.
+
 ##### Experiment 1
-Experiment 1 added 
+Experiment 1 uses the reference model setup but adds several data augmentations, see below.
+
+| Augmentation             | Reason |
+| :----------------------: | :-----------: |
+| random_horizontal_flip   | Can ... |
+| random_crop_image        | Can remove some of the context of the original image |
+| random_black_patches     | Can mimic obstructions in front of the target objects |
+| random_adjust_brightness | Can simulate harsh light or no light conditions |
+| random_adjust_saturation | Can ... |
+| random_adjust_contrast   | Can ... |
+| random_jpeg_quality      | Can mimic poor quality training data |
+    
+The results of experiment 1 show improvement to the reference model, however the final trained model still shows too high of loss and is unable to properly detect objects in the generated inference video.
 
 ##### Experiment 2
+Experiment 2 uses the configuration of experiment 1, but adjusts the momentum optimzer learning rate to a lower value of 0.001. MORE
+
+Experiment 2 showed a major improvment to the losses. MORE
+
+The generated inference [videos](/experiments/experiment2/trained_model/) show how the improved model performs. However, there are clear instances in which the model improperly detects an object. MORE
+
+<img src="./experiments/experiment2/trained_model/incorrect_detection.png"  width="60%" height="30%">
 
 ##### Experiment 3
+Experiment 3 uses the Adam optimizer, instead of the momentum optimizer. In addition, a manual step learning rate is applied as described below.
+
+| Step    | Learning Rate   |
+| :-----: | :------: |
+| Initial | 0.0002   |
+| 500     | 0.0001   |
+| 1000    | 0.00008  |
+| 2000    | 0.00004  |
+
+The generated inference [videos](/experiments/experiment3/trained_model/) show how this model improves performance even more. At the same instance, the Adam optimized model shows more accurate object detection.
+
+<img src="./experiments/experiment3/trained_model/improved_detection.png"  width="60%" height="30%">
+
+Although this model has the best performance of the three experiments, it still fails in a real world scenario. In the image above, at least one car is not detected at all. 
+
+To increase the performance of the model even more, I think that more data augmentations and more optimizer adjustments are necessary to get a high accuracy model. Additionally, a larger dataset could help improve the general performance of the model.
