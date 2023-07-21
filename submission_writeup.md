@@ -1,7 +1,9 @@
 ## Project Submission Writeup
 
 ### Project overview
-This project uses data from the [Waymo Open dataset](https://waymo.com/open/) to train an object detection model and explore different training methods that are available to create an effective model. Through several experiments, the base reference model is slowly improved to create an effective object detection model.
+This project uses data from the [Waymo Open dataset](https://waymo.com/open/) to train an object detection model and explore different training methods that are available to create an effective model. Through several experiments, the base reference model is slowly improved to create an effective object detection model that can detect vehicles, pedestrians, and cyclists in real time.
+
+![gif](/experiments/experiment3/trained_model/inference_video-2.gif)
 
 ### Set up
 The [README](/README.md) contains detailed steps to set up and train a model. Below is a brief summary of the process.
