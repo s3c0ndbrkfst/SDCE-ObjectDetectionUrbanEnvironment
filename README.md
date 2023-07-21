@@ -141,4 +141,4 @@ python inference_video.py --labelmap_path label_map.pbtxt --model_path experimen
 ## Project Submission
 
 ### Project writeup
-Please see submission_writeup.md for detailed writeup on project submission
+Please see [submission_writeup.md](/submission_writeup.md) for detailed writeup on project submission
